@@ -16,10 +16,10 @@ const account = {
 };
 
 account.changeDiscount(0.15);
-console.log(account.discount); // 0.15
+console.log(account.discount);
 
-console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3']
+console.table(account.showOrders());
 
 account.addOrder(5000, 'order-4');
-console.log(account.balance); // 19000
-console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
+console.log(account.balance);
+console.table(account.showOrders());
