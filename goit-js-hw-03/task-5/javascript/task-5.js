@@ -6,7 +6,7 @@ const products = [
 ];
 
 const getAllPropValues = function(arr, prop) {
-  return arr.map(key => key[prop])
+  return arr.map(key => key[prop]);
   }
 
 console.log(getAllPropValues(products, 'name'));
