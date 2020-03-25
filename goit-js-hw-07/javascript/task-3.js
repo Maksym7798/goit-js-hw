@@ -18,22 +18,8 @@ const images = [
 
 const galleryItem = document.querySelector('#gallery');
 
-function createGallery(){
-  let createArray = [];
+const createGalleryItem = ({ url, alt }) => `<li><img style="width:200px" src="${url}" alt="${alt}"></li>`;
 
-  images.forEach(element =>{
-    const li = document.createElement('li');
+const gallery = images.reduce((acc,item)=>acc +createGalleryItem(item),'');
 
-    li.insertAdjacentHTML('afterbegin', '<img>')
-    
-    const image = li.querySelector('img');
-    image.setAttribute('src', element.url);
-    image.setAttribute('alt', element.alt);
-    image.setAttribute('style', 'width:200px')
-   
-    createArray.push(li);
-  });
-  return createArray
-}
-
-galleryItem.append(...createGallery());
+galleryItem.insertAdjacentHTML('afterbegin', gallery);

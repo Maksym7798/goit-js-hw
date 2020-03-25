@@ -3,6 +3,6 @@ const text = document.querySelector('#text');
 
 size.addEventListener('input', fontSize);
 
-function fontSize(element){
-  text.setAttribute('style', `font-size:${element.target.value}px`);
+function fontSize({target}){
+  text.setAttribute('style', `font-size:${target.value}px`);
 }

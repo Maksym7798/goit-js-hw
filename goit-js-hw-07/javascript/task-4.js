@@ -4,13 +4,13 @@ const click = document.querySelector('#counter')
 
 click.addEventListener('click', count);
 
-function count(element){
+function count({target}){
 
-  if(element.target.dataset.action === 'increment'){
+  if(target.dataset.action === 'increment'){
     counterValue += 1;
   }
   
-  if(element.target.dataset.action === 'decrement'){
+  if(target.dataset.action === 'decrement'){
     counterValue -= 1;
   }
 

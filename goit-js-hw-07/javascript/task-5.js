@@ -3,12 +3,12 @@ const name = document.querySelector('#name-output');
 
 text.addEventListener('input', enterName);
 
-function enterName(element){
+function enterName({target}){
 
-  if(element.target.value.length === 0){
+  if(target.value.length === 0){
     name.textContent = 'Незнакомец';
   } else {
-  name.textContent = element.target.value;
+  name.textContent = target.value;
   }
 
   return name.textContent;
