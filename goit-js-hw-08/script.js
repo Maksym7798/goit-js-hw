@@ -30,7 +30,6 @@ function closeModal({target}){
   }
 };
 
-
 window.addEventListener('keydown', keySwipe);
 
 function newSource(i) {
