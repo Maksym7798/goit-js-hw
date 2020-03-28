@@ -26,6 +26,7 @@ function closeModal({target}){
   if(target == refs.close || refs.lightBoxOver){
     refs.lightBox.classList.remove('is-open');
     refs.openImage.removeAttribute('src');
+    i = 0;
   }
 };
 
@@ -39,9 +40,9 @@ function newSource(i) {
 let i = 0;
 
 function keySwipe(event){
- 
+  
   if(event.key === 'ArrowRight'){
-    i += 1;
+    i ++;
   } 
 
   else if (event.key === 'ArrowLeft'){
@@ -49,8 +50,7 @@ function keySwipe(event){
   }
   
   else if (event.key === 'Escape'){
-    refs.lightBox.classList.remove('is-open');
-    refs.openImage.removeAttribute('src');
+    closeModal(event)
   }
 
   i = (i) % galleryItems.length;
