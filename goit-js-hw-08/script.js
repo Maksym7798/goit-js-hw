@@ -1,30 +1,58 @@
 import galleryItems from './gallery-items.js';
+const refs = {
+  gallery: document.querySelector('.js-gallery'),
+  openImage: document.querySelector('.lightbox__image'),
+  lightBox: document.querySelector('.lightbox'),
+  close: document.querySelector('.lightbox__button'),
+  lightBoxOver: document.querySelector('.lightbox__overlay')
+};
 
 const createLi = ({preview, original, description}) => `<li class="gallery__item"><a class="gallery__link" href="#"><img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"></a></li>`;
 const sourceLi = galleryItems.reduce((acc, item) => acc + createLi(item), '');
-const gallery = document.querySelector('.js-gallery');
-gallery.insertAdjacentHTML('afterbegin', sourceLi);
 
-gallery.addEventListener('click', moveToOriginal);
+refs.gallery.insertAdjacentHTML('afterbegin', sourceLi);
+refs.gallery.addEventListener('click', moveToOriginal);
 
-const openImage = document.querySelector('.lightbox__image');
-const lightBox = document.querySelector('.lightbox');
-
-function moveToOriginal(event){
-  let target = event.target;
-  if(target !== event.currentTarget){
-    lightBox.classList.add('is-open');
-    openImage.setAttribute('src', target.dataset.source);
+function moveToOriginal({target, currentTarget}){
+  if(target !== currentTarget){
+    refs.lightBox.classList.add('is-open');
+    refs.openImage.setAttribute('src', target.dataset.source);
   };
 };
 
-lightBox.addEventListener('click', closeModal);
-
-const close = document.querySelector('.lightbox__button');
+refs.lightBox.addEventListener('click', closeModal);
 
 function closeModal({target}){
-  if(target == close){
-    lightBox.classList.remove('is-open');
-    openImage.removeAttribute('src');
-  };
+  if(target == refs.close || refs.lightBoxOver){
+    refs.lightBox.classList.remove('is-open');
+    refs.openImage.removeAttribute('src');
+  }
 };
+
+
+window.addEventListener('keydown', keySwipe);
+
+function newSource(i) {
+  refs.openImage.setAttribute('src', galleryItems[i].original)
+}
+
+let i = 0;
+
+function keySwipe(event){
+ 
+  if(event.key === 'ArrowRight'){
+    i += 1;
+  } 
+
+  else if (event.key === 'ArrowLeft'){
+    i -= 1;
+  }
+  
+  else if (event.key === 'Escape'){
+    refs.lightBox.classList.remove('is-open');
+    refs.openImage.removeAttribute('src');
+  }
+
+  i = (i) % galleryItems.length;
+  newSource(Math.abs(i))
+}
