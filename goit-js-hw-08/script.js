@@ -4,10 +4,11 @@ const refs = {
   openImage: document.querySelector('.lightbox__image'),
   lightBox: document.querySelector('.lightbox'),
   close: document.querySelector('.lightbox__button'),
-  lightBoxOver: document.querySelector('.lightbox__overlay')
+  lightBoxOver: document.querySelector('.lightbox__overlay'),
 };
 
-const createLi = ({preview, original, description}) => `<li class="gallery__item"><a class="gallery__link" href="#"><img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"></a></li>`;
+let i;
+const createLi = ({preview, original, description, index}) => `<li class="gallery__item"><a class="gallery__link" href="#"><img class="gallery__image" src="${preview}" data-index="${index}" data-source="${original}" alt="${description}"></a></li>`;
 const sourceLi = galleryItems.reduce((acc, item) => acc + createLi(item), '');
 
 refs.gallery.insertAdjacentHTML('afterbegin', sourceLi);
@@ -17,6 +18,7 @@ function moveToOriginal({target, currentTarget}){
   if(target !== currentTarget){
     refs.lightBox.classList.add('is-open');
     refs.openImage.setAttribute('src', target.dataset.source);
+    i = target.dataset.index;
   };
 };
 
@@ -35,8 +37,6 @@ window.addEventListener('keydown', keySwipe);
 function newSource(i) {
   refs.openImage.setAttribute('src', galleryItems[i].original)
 }
-
-let i = 0;
 
 function keySwipe(event){
   
