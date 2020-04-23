@@ -1,0 +1,38 @@
+body{
+  width: 100vw;
+  height: 100vh;
+}
+
+.timer{
+  margin: 0 auto;
+  width: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid #444444;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value{
+  font-size: 60px;
+  background-color: #333333;
+  color: #eeeeee;
+  border-radius: 10%;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.label{
+  opacity: 0.5;
+}
