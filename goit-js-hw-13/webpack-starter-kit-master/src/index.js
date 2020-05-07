@@ -40,7 +40,7 @@ function onInput({ target }) {
 
 function toDo(data) {
   const images = data.hits;
-  if(images.length == 0){
+  if(images.length === 0){
     error('Enter correct query!').delay = '2000';
   };
   markup(images);
