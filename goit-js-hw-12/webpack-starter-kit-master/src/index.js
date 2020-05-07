@@ -7,8 +7,8 @@ import './index.css';
 
 const debounce = require('lodash.debounce');
 const refs = {
-  container: document.querySelector('.container'),
-  input: document.querySelector('.to-do'),
+  container:   document.querySelector('.container'),
+  input:       document.querySelector('.to-do'),
 };
 
 refs.input.addEventListener('input', debounce(onInput, 500));
