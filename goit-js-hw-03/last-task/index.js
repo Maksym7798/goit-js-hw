@@ -12,24 +12,23 @@ const account = {
   id: 0,
 
   createTransaction(amount, type) {
-    this.amount = amount;
-    this.type = type;
+
     this.id++;
 
-    if(this.type == 'deposit'){
-      this.balance += this.amount;
+    if(type == 'deposit'){
+      this.balance += amount;
     }
 
-    if(this.type == 'withdraw'){
+    if(type == 'withdraw'){
 
-      if(this.balance > this.amount + 1){
-        this.balance -= this.amount
+      if(this.balance > amount + 1){
+        this.balance -= amount
       } else {
         console.log('error');
       }
 
     }
-    this.transactions.push({id: this.id, amount: this.amount, type: this.type, })
+    this.transactions.push({id: this.id, amount: amount, type: type, })
   },
 
   deposit(amount) {
